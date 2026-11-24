@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Счёт {{ invoice.invoice_id }}</title>
+  <style>
+    @font-face {
+      font-family: "DejaVu Sans";
+      src: url("../fonts/DejaVuSans.ttf");
+      font-weight: 400;
+    }
+
+    @font-face {
+      font-family: "DejaVu Sans";
+      src: url("../fonts/DejaVuSans-Bold.ttf");
+      font-weight: 700;
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    body {
+      font-family: "DejaVu Sans", sans-serif;
+      color: #1f2933;
+      font-size: 11pt;
+      margin: 0;
+    }
+
+    .header {
+      background: #1d4e89;
+      color: #ffffff;
+      padding: 28px 36px 22px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 24pt;
+    }
+
+    .header p {
+      margin: 6px 0 0;
+      color: #d6e4f5;
+    }
+
+    .content {
+      padding: 28px 36px 36px;
+    }
+
+    .cards {
+      width: 100%;
+      margin-bottom: 24px;
+      border-collapse: separate;
+      border-spacing: 12px 0;
+    }
+
+    .card {
+      width: 50%;
+      background: #f4f7fb;
+      border-radius: 8px;
+      padding: 14px 16px;
+      vertical-align: top;
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 10pt;
+      color: #1d4e89;
+      text-transform: uppercase;
+    }
+
+    .card p {
+      margin: 0 0 4px;
+    }
+
+    table.items {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table.items th {
+      text-align: left;
+      color: #627d98;
+      font-size: 10pt;
+      padding: 8px 6px;
+      border-bottom: 2px solid #1d4e89;
+    }
+
+    table.items td {
+      padding: 10px 6px;
+      border-bottom: 1px solid #d9e2ec;
+    }
+
+    .number {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .total-box {
+      margin-top: 22px;
+      margin-left: auto;
+      width: 240px;
+      background: #1d4e89;
+      color: #ffffff;
+      border-radius: 8px;
+      padding: 14px 16px;
+      text-align: right;
+    }
+
+    .total-box span {
+      display: block;
+      font-size: 10pt;
+      color: #d6e4f5;
+    }
+
+    .total-box strong {
+      font-size: 16pt;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Счёт {{ invoice.invoice_id }}</h1>
+    <p>Современный шаблон</p>
+  </div>
+
+  <div class="content">
+    <table class="cards">
+      <tr>
+        <td class="card">
+          <h2>Счёт</h2>
+          <p>Номер: {{ invoice.invoice_id }}</p>
+          <p>Дата: {{ invoice.invoice_date }}</p>
+        </td>
+        <td class="card">
+          <h2>Клиент</h2>
+          <p>{{ invoice.customer_name }}</p>
+          <p>{{ invoice.customer_address }}</p>
+        </td>
+      </tr>
+    </table>
+
+    <table class="items">
+      <thead>
+        <tr>
+          <th>Наименование</th>
+          <th class="number">Количество</th>
+          <th class="number">Цена</th>
+          <th class="number">Сумма</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in invoice["items"] %}
+        <tr>
+          <td>{{ item.name }}</td>
+          <td class="number">{{ item.quantity_text }}</td>
+          <td class="number">{{ item.price_text }} руб.</td>
+          <td class="number">{{ item.subtotal_text }} руб.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="total-box">
+      <span>Итоговая сумма</span>
+      <strong>{{ invoice.total_text }} руб.</strong>
+    </div>
+  </div>
+</body>
+</html>

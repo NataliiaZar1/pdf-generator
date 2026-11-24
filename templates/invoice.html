@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Счёт {{ invoice.invoice_id }}</title>
+  <style>
+    @font-face {
+      font-family: "DejaVu Sans";
+      src: url("../fonts/DejaVuSans.ttf");
+      font-weight: 400;
+    }
+
+    @font-face {
+      font-family: "DejaVu Sans";
+      src: url("../fonts/DejaVuSans-Bold.ttf");
+      font-weight: 700;
+    }
+
+    @page {
+      size: A4;
+      margin: 18mm;
+    }
+
+    body {
+      font-family: "DejaVu Sans", sans-serif;
+      color: #222222;
+      font-size: 12pt;
+      line-height: 1.4;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 22pt;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      margin: 0 0 22px;
+      text-align: center;
+      color: #555555;
+    }
+
+    .info {
+      width: 100%;
+      margin-bottom: 22px;
+      border-collapse: collapse;
+    }
+
+    .info td {
+      vertical-align: top;
+      padding: 4px 0;
+    }
+
+    .label {
+      width: 28%;
+      color: #555555;
+    }
+
+    table.items {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table.items th,
+    table.items td {
+      border: 1px solid #888888;
+      padding: 8px;
+    }
+
+    table.items th {
+      background: #f3f3f3;
+      text-align: left;
+    }
+
+    .number {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .total {
+      margin-top: 18px;
+      text-align: right;
+      font-size: 14pt;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <h1>СЧЁТ</h1>
+  <p class="subtitle">Классический шаблон</p>
+
+  <table class="info">
+    <tr>
+      <td class="label">Номер счёта</td>
+      <td>{{ invoice.invoice_id }}</td>
+    </tr>
+    <tr>
+      <td class="label">Дата</td>
+      <td>{{ invoice.invoice_date }}</td>
+    </tr>
+    <tr>
+      <td class="label">Клиент</td>
+      <td>{{ invoice.customer_name }}</td>
+    </tr>
+    <tr>
+      <td class="label">Адрес</td>
+      <td>{{ invoice.customer_address }}</td>
+    </tr>
+  </table>
+
+  <table class="items">
+    <thead>
+      <tr>
+        <th>Наименование</th>
+        <th class="number">Количество</th>
+        <th class="number">Цена</th>
+        <th class="number">Сумма</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in invoice["items"] %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td class="number">{{ item.quantity_text }}</td>
+        <td class="number">{{ item.price_text }} руб.</td>
+        <td class="number">{{ item.subtotal_text }} руб.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <p class="total">Итого: {{ invoice.total_text }} руб.</p>
+</body>
+</html>

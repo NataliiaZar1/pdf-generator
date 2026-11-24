@@ -1,0 +1,71 @@
+[
+  {
+    "invoice_id": "INV-001",
+    "invoice_date": "12.03.2026",
+    "customer_name": "ООО «Ромашка»",
+    "customer_address": "г. Москва, ул. Садовая, д. 10",
+    "items": [
+      {
+        "name": "Разработка сайта",
+        "quantity": 1,
+        "price": 25000,
+        "subtotal": 25000
+      },
+      {
+        "name": "Настройка почты",
+        "quantity": 2,
+        "price": 1500,
+        "subtotal": 3000
+      }
+    ],
+    "total": 28000
+  },
+  {
+    "invoice_id": "INV-002",
+    "invoice_date": "18.03.2026",
+    "customer_name": "ИП Петров Алексей Сергеевич",
+    "customer_address": "г. Казань, ул. Баумана, д. 42, кв. 7",
+    "items": [
+      {
+        "name": "Консультация",
+        "quantity": 3,
+        "price": 2000,
+        "subtotal": 6000
+      },
+      {
+        "name": "Подготовка договора",
+        "quantity": 1,
+        "price": 4500,
+        "subtotal": 4500
+      }
+    ],
+    "total": 10500
+  },
+  {
+    "invoice_id": "INV-003",
+    "invoice_date": "02.04.2026",
+    "customer_name": "Кафе «Берёзка»",
+    "customer_address": "г. Санкт-Петербург, Невский проспект, д. 28",
+    "items": [
+      {
+        "name": "Поставка кофе",
+        "quantity": 10,
+        "price": 800,
+        "subtotal": 8000
+      },
+      {
+        "name": "Поставка чая",
+        "quantity": 5,
+        "price": 600,
+        "subtotal": 3000
+      },
+      {
+        "name": "Доставка",
+        "quantity": 1,
+        "price": 700,
+        "subtotal": 700
+      }
+    ],
+    "total": 11700
+  }
+]
